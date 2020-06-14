@@ -298,6 +298,24 @@ module.exports.map = map;
  * 
  */
  
+ 
+ /**
+  * pluck: takes an array of objects and a property and returns all the values assoiciated with the property into a new array
+  * 
+  * @param: {array} array: an array of objects
+  * 
+  * @param: {key} prop: a property or key value in an object
+  * 
+  * @return: {array} : an array of values with key names that match the prop parameter
+  * 
+  */
+ 
+  function pluck (array, prop) {
+    return array.map((e, i, a) => a[i][prop]);
+ }
+
+ module.export.pluck = pluck;
+ 
 function every (collection, func) {
 let test = true;
 each(collection, function(e, i, a) {
