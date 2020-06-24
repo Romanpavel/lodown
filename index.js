@@ -126,7 +126,7 @@ module.exports.last = last;
  * 
  * @param {*} value : any type of value
  * 
- * @return {index || -1} : return the index at whcih the value was found, or -1 if no value is found
+ * @return {number} : return the index at whcih the value was found, or -1 if no value is found
  * 
  */
  
@@ -287,6 +287,28 @@ function map (collection, func) {
 
 module.exports.map = map;
 
+
+ 
+ /**
+  * pluck: takes an array of objects and a property and returns all the values assoiciated with the property into a new array
+  * 
+  * @param: {array} array: an array of objects
+  * 
+  * @param: {string} prop: a property or key value in an object
+  * 
+  * @return: {array} : an array of values with key names that match the prop parameter
+  * 
+  */
+  
+ 
+  function pluck (array, prop) {
+    return array.map((e, i, a) => a[i][prop]);
+ }
+
+ module.exports.pluck = pluck;
+ 
+ 
+
 /**
  * every: return a boolean true if every value passes to be true, false otherwise
  * 
@@ -294,51 +316,34 @@ module.exports.map = map;
  * 
  * @param: {function} func : a function that acts upon element, index, array
  * 
- * @return {boolean} : true if all elements are truthy, otherwise false
+ * @return {boolean} : true if all elements are truthy, otherwise false, if callback not given return false.
  * 
  */
  
  
- /**
-  * pluck: takes an array of objects and a property and returns all the values assoiciated with the property into a new array
-  * 
-  * @param: {array} array: an array of objects
-  * 
-  * @param: {key} prop: a property or key value in an object
-  * 
-  * @return: {array} : an array of values with key names that match the prop parameter
-  * 
-  */
- 
-  function pluck (array, prop) {
-    return array.map((e, i, a) => a[i][prop]);
- }
-
- module.export.pluck = pluck;
- 
 function every (collection, func) {
-let test = true;
-each(collection, function(e, i, a) {
-    if (typeof func === 'function' && !func(e, i, a)) {
-            test = false;
-        } else if (!e) {
-                test = false;
+    let test = true;
+        each(collection, function(e, i, a) {
+         if (typeof func === 'function' && !func(e, i, a)) {
+             test = false;
+         } else if (!e) {
+             test = false;
     }
 });
-return test
-};
+return test;
+}
 
 module.exports.every = every;
 
 
 /**
- * some:
+ * some: takes a collection, and a callback function, if the result of runing the function on ANY element results to true, return tru
  * 
  * @param {array/object} collection: an array or an object
  * 
  * @param {function} func : a function to act on all elements, index, array
  * 
- * @return {boolean} : if one element is truthy, return true, otherwise return false
+ * @return {boolean} : if one element is truthy, return true, otherwise return false, if no callback is given, return true if element is given, false otherwise.
  * 
  */
  
