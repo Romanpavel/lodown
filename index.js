@@ -337,7 +337,9 @@ module.exports.every = every;
 
 
 /**
- * some: takes a collection, and a callback function, if the result of runing the function on ANY element results to true, return tru
+ * some: takes a collection, and a callback function, if the result of runing the function on ANY element results to true, return true,
+ *       implementing the each function, iterate through the a collection of objects or arrays, accessing every element and value, for edge cases
+ *       if a callback function is not given but an element exists, return true
  * 
  * @param {array/object} collection: an array or an object
  * 
@@ -369,7 +371,9 @@ return test;
  
  
  /**
-  * reduce: takes an array, a function, and a seed
+  * reduce: takes an array, a function, and a seed, if no seed is provided, the first element in the array will become the seed, 
+  *         the callback function takes an additioanl 4 parameters including the accumulator or previous value, and the current value,
+  *         the callback function reduces all accessed elements in the array into a single datatType.
   * 
   * @param: {array} array : an array of values
   * 
@@ -402,7 +406,8 @@ return test;
   
   
   /**
-   * extend: adds objects properties to current object
+   * extend: adds objects properties to current object, takes objects as its paramaters, regardless of the number of objects, the added objects
+   *        will be added onto the tst given object. so all passed in objects will reduce to a single object.
    * 
    * @param {object} object : an object
    * 
